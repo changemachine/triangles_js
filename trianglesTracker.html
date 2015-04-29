@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link href="css/bootstrap.css" rel="stylesheet" type="text/css">
+    <link href="css/styles.css" rel="stylesheet" type="text/css">
+    <script src="js/jquery-2.1.3.js"></script>
+    <script src="js/scripts.js"></script>
+    <title>Triangle Classification</title>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Triangle Classification</h1>
+
+      <form id="triangle-sides">
+        <div class="form-group">
+          <label for="side1" >Side 1</label>
+          <input id="side1" name='sides[]' class='sides' type="number" required>
+          <label for="side2">Side 2</label>
+          <input id="side2" name='sides[]' class='sides' type="number" required>
+          <label for="side3">Side 3</label>
+          <input id="side3" name='sides[]' class='sides' type="number" required>
+        </div>
+
+        <button type="submit" class="btn btn-info">Submit</button>
+      </form>
+
+      <!-- <div id="result">
+        <h3>Triangle Type... <span id="triangleType" class="text-danger"></span></h3>
+      </div> -->
+
+
+      <div class="col-sm-4">
+          <h3>Equilateral</h3>
+          <ul id="equilateral">
+
+          </ul>
+      </div>
+
+      <div class="col-sm-4">
+          <h3>Isosceles</h3>
+          <ul id="isosceles">
+
+          </ul>
+      </div>
+
+      <div class="col-sm-4">
+          <h3>Scalene</h3>
+          <ul id="scalene">
+
+          </ul>
+      </div>
+
+
+
+    </div>
+  </body>
+</html>
