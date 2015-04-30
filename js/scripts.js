@@ -71,13 +71,12 @@ jQuery(document).ready(function() {
         var B = properties[5];
         var C = properties[6];
 
+        // var H = (2 * Area)/C; WRONG
+        // Area = 1/2 base * H
+        //Area = C/2 * H
+        var H = Area/(C/2);
+        console.log('H = '+ H);
 
-        var H = (2 * Area)/C;
-        console.log(H);
-        /*
-        I THINK THIS IS THE PROBLEM
-        Math.pow(base, 2) + Math.pow(height, 2) = Math.pow(hypot, 2);
-        */
 
 
 
@@ -118,11 +117,10 @@ jQuery(document).ready(function() {
         else {
         // Pythag with B as hypot (B>A due to sorting):
         // H^2+C^2=B^2  = = = B^2-H^2=C^2
-        var Csq = Math.pow(B, 2) - Math.pow(H, 2);
-        var subC = Math.sqrt(Csq);
-        abX = 100 - subC; // center - sub-base
-        console.log(subC);
-
+        var subCsq = Math.pow(B, 2) - Math.pow(H, 2);
+        var subC = Math.sqrt(subCsq);
+        abX = 100 - subC; //POSITION FROM CENTER
+        console.log('subC = '+ subC);
         }
 
     // ========== DRAW TRIANGLE ============
