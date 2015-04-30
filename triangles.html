@@ -3,38 +3,28 @@
   <head>
     <link href="css/bootstrap.css" rel="stylesheet" type="text/css">
     <link href="css/styles.css" rel="stylesheet" type="text/css">
-    <title>Triangle Classification</title>
+    <title>The Triangular Wranguler!</title>
   </head>
   <body>
     <script src="js/jquery-2.1.3.js"></script>
     <script src="js/scripts.js"></script>
     <div class="container">
-      <h1>Triangle Classification</h1>
+      <h2>The Triangular Wranguler!</h2>
 
       <form id="triangle-sides">
         <div class="form-group">
-          <label for="side1" >Side 1</label>
-          <input id="side1" name='sides[]' class='sides' type="number" value='2' required>
-          <label for="side2">Side 2</label>
-          <input id="side2" name='sides[]' class='sides' type="number" value='2' required>
-          <label for="side3">Side 3</label>
-          <input id="side3" name='sides[]' class='sides' type="number" value='2' required>
+          <input id="side1" name='sides[]' class='sides' type="number" placeholder='Side 1' required>
+          <input id="side2" name='sides[]' class='sides' type="number" placeholder='Side 2' required>
+          <input id="side3" name='sides[]' class='sides' type="number" placeholder='Side 3' required>
+        <button type="submit" class="btn btn-info btn-xs">Submit</button>
         </div>
-
-        <button type="submit" class="btn btn-info">Submit</button>
       </form>
 
+
       <div id="result">
-        <h3><span class="triangleType" class="text-danger"></span></h3>
-
-<canvas id='canvas' width='200' height='150'></canvas>
-
-
-
-
-        <h4><span id="triangleSpec"></span></h4>
-
-        <h4>Unknown Secrets of <span class='triangleType'></span></h4>
+        <span class='triangleType'><h4>Unknown Secrets of </h4></span>
+        <canvas id='canvas' width='200' height='150'></canvas>
+        <span id="triangleSpec"></span>
         <p><span id='triangleBio'></span></p>
 
       </div>

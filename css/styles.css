@@ -1,9 +1,17 @@
 #result, #nomatches {
   display: none;
 }
+h1, h2, h3, h4 {
+  text-align: center;
+}
 
 #canvas {
   background-color: #E0E0FF;
+  padding-left: 0;
+      padding-right: 0;
+      margin-left: auto;
+      margin-right: auto;
+      display: block;
 }
 
 
