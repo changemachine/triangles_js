@@ -53,6 +53,8 @@ function triangulize(sides_input) {
 jQuery(document).ready(function() {
     $("#side1").focus();
 
+    var canvas = $('#canvas')[0]; // or document.getElementById('canvas');
+
     $("#triangle-sides").submit(function(event) {
         var sides_input = document.getElementsByClassName( 'sides' ),
             sides  = [].map.call(sides_input, function( input ) {
@@ -63,67 +65,78 @@ jQuery(document).ready(function() {
         $("#triangleSpec").html("<p>&#x25B5; Perimeter: " + properties[1] + "<p>&#x25B5; Area: " + properties[2] + "</p>");//glyphs + Area
         $("#triangleBio").html(properties[3]);//Description
 
-        var canvas = $('#canvas')[0]; // or document.getElementById('canvas');
 
     // ========== SET UP TRIANGLE VERTS
         var A = properties[4];
         var B = properties[5];
         var C = properties[6];
-        var h = Area / (C/2);
 
-        var acx = 150 - Math.floor(C)/2;
-        var acy = 175;
 
-        var bcx = 150 + Math.floor(C)/2;
-        var bcy = 175;
+        var H = (2 * Area)/C;
+        console.log(H);
+        /*
+        I THINK THIS IS THE PROBLEM
+        Math.pow(base, 2) + Math.pow(height, 2) = Math.pow(hypot, 2);
+        */
 
-        var abx = 0;
-        var aby = 150 - Math.floor(h); //bottom - height;
 
-    // ==========SCALE TRIANGLE TO ~100
+
+
+
+    // ==========SCALE TRIANGLE SIDES TO ~100
         if (C <= 100) {
             while (C < 100) {
                 A *= 1.10;
                 B *= 1.10;
                 C *= 1.10;
-                h *= 1.10;
+                H *= 1.10;
             }
         } else if (C > 100) {
             while (C >100) {
                 A /= 1.10;
                 B /= 1.10;
                 C /= 1.10;
-                h /= 1.10;
+                H /= 1.10;
             }
         }
+    // =========== BOTTOM VERTICES
+        var caX = 100 - Math.floor(C)/2;
+        var caY = 125;
+        //btm right
+        var cbX = 100 + Math.floor(C)/2;
+        var cbY = 125;
 
-    // ========= DETERMINE PEAK
-        /*  If the triangle is bisected at the peak, A & h are now known sides of a right triangle with sub-base b, which represents the distance from the peak to the end of the 'super-base'.
+    // =========  PEAK
+        /*  If the triangle is bisected at the peak, A/B & h are now known sides of a right triangle with sub-base c, which represents the horizontal distance from peak to the end of C.
+        To determine sub-base c:  */
+        var abX = 'mathy numbers';
+        var abY = 125 - Math.floor(H); //'bottom' - height;
 
-        To determine sub-base b:  */
         if (B === C) {
-          abx = bcx;
+          abX = 100;
         }
-        else if (B > A) {
-        // Solve pythag, with A as A, C as B, and B as C
+        else {
+        // Pythag with B as hypot (B>A due to sorting):
+        // H^2+C^2=B^2  = = = B^2-H^2=C^2
+        var Csq = Math.pow(B, 2) - Math.pow(H, 2);
+        var subC = Math.sqrt(Csq);
+        abX = 100 - subC; // center - sub-base
+        console.log(subC);
 
         }
-
-
 
     // ========== DRAW TRIANGLE ============
-
         if (canvas.getContext){
           var triPic = canvas.getContext('2d');
           triPic.beginPath();
-          triPic.moveTo(acx, acy);
-          triPic.lineTo(bcx, bcy);
-          triPic.lineTo(abx, aby);
+          triPic.moveTo(caX, caY);// LEFT
+          //SIDE C
+          triPic.lineTo(cbX, cbY);// RIGHT
+          //SIDE B
+          triPic.lineTo(abX, abY);// TOP
           triPic.fillStyle="orange";
           triPic.fill();
         }
-
-
 
 
         $("#result").show();

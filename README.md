@@ -2,7 +2,7 @@
 ## by James Nielson
 ### Date: April 10, 2015
 #### Description
-This web app identifies the type of triangle produced by 3 given side lengths.
+This web app identifies the type of triangle produced by 3 given side lengths.  It also attempts to draw it, but the formulae aren't quite there yet.
 
 #### Setup instructions
 1. Clone this git repository
