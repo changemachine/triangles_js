@@ -63,15 +63,24 @@ jQuery(document).ready(function() {
         $("#triangleSpec").html("<p>&#x25B5; Perimeter: " + properties[1] + "<p>&#x25B5; Area: " + properties[2] + "</p>");//glyphs + Area
         $("#triangleBio").html(properties[3]);//Description
 
-
         var canvas = $('#canvas')[0]; // or document.getElementById('canvas');
-        // canvas.width = canvas.width;
-    // ==========SCALE TRIANGLE TO ~100
+
+    // ========== SET UP TRIANGLE VERTS
         var A = properties[4];
         var B = properties[5];
         var C = properties[6];
         var h = Area / (C/2);
 
+        var acx = 150 - Math.floor(C)/2;
+        var acy = 175;
+
+        var bcx = 150 + Math.floor(C)/2;
+        var bcy = 175;
+
+        var abx = 0;
+        var aby = 150 - Math.floor(h); //bottom - height;
+
+    // ==========SCALE TRIANGLE TO ~100
         if (C <= 100) {
             while (C < 100) {
                 A *= 1.10;
@@ -88,16 +97,21 @@ jQuery(document).ready(function() {
             }
         }
 
+    // ========= DETERMINE PEAK
+        /*  If the triangle is bisected at the peak, A & h are now known sides of a right triangle with sub-base b, which represents the distance from the peak to the end of the 'super-base'.
+
+        To determine sub-base b:  */
+        if (B === C) {
+          abx = bcx;
+        }
+        else if (B > A) {
+        // Solve pythag, with A as A, C as B, and B as C
+
+        }
+
+
+
     // ========== DRAW TRIANGLE ============
-        var acx = 150 - Math.floor(C)/2;
-        console.log(acx);
-        var acy = 175;
-        var bcx = 150 + Math.floor(C)/2;
-        console.log(bcx);
-        var bcy = 175;
-        var abx = 150;
-        var aby = 150 - Math.floor(h); //bottom - height;
-        console.log(aby);
 
         if (canvas.getContext){
           var triPic = canvas.getContext('2d');
